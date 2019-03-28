@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+group 'com.jumprabbit'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 1, 'minutes'
+}
+
+//configurations {
+//    all*.exclude group: "log4j", module: "log4j"
+//    all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
+//    all*.exclude group: "ch.qos.logback", module: "logback-classic"
+//}
+
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ["src/main/java"]
+//        }
+//        resources {
+//            srcDirs = ["src/main/resources"]
+//        }
+//    }
+//    test {
+//        java {
+//            srcDirs = ["src/main/java"]
+//        }
+//        resources {
+//            srcDirs = ["src/main/resources"]
+//        }
+//    }
+//}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
