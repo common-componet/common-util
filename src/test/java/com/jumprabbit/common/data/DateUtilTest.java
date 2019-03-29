@@ -19,9 +19,14 @@ public class DateUtilTest {
     public void formatDate() {
 
         Date nowDate = DateUtil.getNowDate();
-        String s = DateUtil.formatDate(nowDate);
+        String s = DateUtil.format(nowDate);
 
         System.out.println(s);
+
+        Date date = DateUtil.parse(s, DateUtil.yyyy_MM_dd_hh_mm_ss);
+
+        System.out.println(date);
+
 
     }
 
