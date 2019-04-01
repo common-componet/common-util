@@ -2,9 +2,9 @@ package com.jumprabbit.common.data;
 
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-
-import static org.junit.Assert.*;
+import java.util.UUID;
 
 /**
  * @author tianbeiping
@@ -23,7 +23,7 @@ public class DateUtilTest {
 
         System.out.println(s);
 
-        Date date = DateUtil.parse(s, DateUtil.yyyy_MM_dd_hh_mm_ss);
+        Date date = DateUtil.parse(s, DateUtil.yyyy_MM_dd_HH_mm_ss);
 
         System.out.println(date);
 
@@ -32,5 +32,17 @@ public class DateUtilTest {
 
     @Test
     public void parseDate() {
+
+        String s = UUID.randomUUID().toString();
+
+        System.out.println(s);
+
+        for (int i = 0; i < 100000; i++) {
+            System.out.println(System.currentTimeMillis());
+            System.out.println(System.nanoTime());
+            System.out.println(LocalDateTime.now().getNano());
+            System.out.println("============================");
+        }
+
     }
 }

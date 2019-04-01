@@ -4,14 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.net.*;
+import java.util.*;
 
 /**
  * @author tianbeiping
@@ -48,7 +42,6 @@ public class HttpUtil {
         return get(urlPath, headMap, read_timeout);
     }
 
-
     public static String get(String urlPath, Map<String, String> headMap, int timeout) {
         String data = null;
         InputStream inputStream = null;
@@ -68,7 +61,7 @@ public class HttpUtil {
             if (Objects.isNull(content)) {
                 return data;
             }
-            data = IoUtil.getString(content.getInputStream());
+            data = IoUtil.toString(content.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -100,7 +93,7 @@ public class HttpUtil {
             if (Objects.isNull(content)) {
                 return result;
             }
-            result = IoUtil.getString(content.getInputStream());
+            result = IoUtil.toString(content.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -159,6 +152,35 @@ public class HttpUtil {
             e.printStackTrace();
         }
         return connection;
+    }
+
+
+    private static String proxyHttp() {
+        URL url = null;
+        try {
+            url = new URL("http://www.baidu.com");
+
+            // 创建代理服务器
+            InetSocketAddress addr = new InetSocketAddress("172.21.1.8", 80);
+            // http 代理
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, addr);
+            URLConnection conn = url.openConnection(proxy);
+            //以下三行是在需要验证时，输入帐号密码信息
+            String headerkey = "Proxy-Authorization";
+            //帐号密码用:隔开，base64加密方式
+            String headerValue = "Basic " + Base64.getEncoder().encode("atco:atco".getBytes());
+            conn.setRequestProperty(headerkey, headerValue);
+            InputStream in = conn.getInputStream();
+            // InputStream in = url.openStream();
+            String s = IoUtil.toString(in);
+
+            return s;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

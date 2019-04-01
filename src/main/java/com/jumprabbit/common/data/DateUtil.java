@@ -17,13 +17,13 @@ public class DateUtil {
     }
 
 
-    public final static String yyyy_MM_dd_hh_mm_ss = "yyyy-MM-dd HH:mm:ss";
+    public final static String yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
 
-    public final static String yyyyMMddhhmmss = "yyyyMMddHHmmss";
+    public final static String yyyyMMddHHmmss = "yyyyMMddHHmmss";
 
     public final static String yyyy_MM_dd = "yyyy-MM-dd";
 
-    public final static String hh_mm_ss = "HH:mm:ss";
+    public final static String HH_mm_ss = "HH:mm:ss";
 
     public final static ZoneOffset zoneOffset = ZoneOffset.of("+8");
 
@@ -48,11 +48,11 @@ public class DateUtil {
     }
 
     public static String format() {
-        return format(getNowDate(), yyyy_MM_dd_hh_mm_ss);
+        return format(getNowDate(), yyyy_MM_dd_HH_mm_ss);
     }
 
     public static String format(Date currentDate) {
-        return format(currentDate, yyyy_MM_dd_hh_mm_ss);
+        return format(currentDate, yyyy_MM_dd_HH_mm_ss);
     }
 
     public static String format(Date currentDate, String format) {
@@ -60,7 +60,7 @@ public class DateUtil {
     }
 
     public static Date parse(String stringDate) {
-        return getDate(LocalDateTime.from(getFormatter(yyyy_MM_dd_hh_mm_ss).parse(stringDate)));
+        return getDate(LocalDateTime.from(getFormatter(yyyy_MM_dd_HH_mm_ss).parse(stringDate)));
     }
 
     public static Date parse(String stringDate, String format) {

@@ -1,7 +1,6 @@
 package com.jumprabbit.common.data;
 
 import java.io.*;
-import java.nio.charset.Charset;
 
 /**
  * @author tianbeiping
@@ -15,14 +14,14 @@ public class IoUtil {
     private IoUtil() {
     }
 
-    public static String getString(InputStream inputStream) {
+    public static String toString(InputStream inputStream) {
 
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader reader = new BufferedReader(inputStreamReader);
-        return getString(reader);
+        return toString(reader);
     }
 
-    public static String getString(Reader reader) {
+    public static String toString(Reader reader) {
 
         BufferedReader readers = new BufferedReader(reader);
         StringBuffer sb = new StringBuffer();
